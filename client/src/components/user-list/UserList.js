@@ -3,6 +3,7 @@ import { UserAction } from "./UserLIstConstants";
 import { UserDetails } from "./user-details/UserDetails";
 import { UserEdit } from "./user-edit/UserEdit";
 import { UserDelete } from "./user-delete/UserDelete";
+import { UserCreate } from "./user-create/UserCreate";
 
 import { useState } from "react";
 
@@ -65,6 +66,7 @@ export const UserList = ({
     }
 
     return (
+        <>
         <div className="table-wrapper">
             
            
@@ -85,6 +87,12 @@ export const UserList = ({
             {userAction.action === UserAction.Delete && 
                 <UserDelete
                     user={userAction.user}
+                    onClose={closeHandler}
+                />
+            }   
+
+            {userAction.action === UserAction.Add && 
+                <UserCreate
                     onClose={closeHandler}
                 />
             }   
@@ -147,5 +155,8 @@ export const UserList = ({
                 </tbody>
             </table>
         </div>
+
+        <button className="btn-add btn" onClick={() => usertActionClickHandler(null, UserAction.Add)}>Add new user</button>
+        </>
     );
 }
